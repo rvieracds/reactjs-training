@@ -147,20 +147,21 @@ const defaultSorted = [{
 
 function App() {
   return (
-    <div style={{ margin: '27px 52px', background: 'red' }}>
+    <div style={{ margin: '27px 52px' }}>
       <BootstrapTable
-          bootstrap4
-          keyField="id"
-          data={applicants}
-          columns={columns}
-          pagination={paginationFactory(options)}
-          // hover
-          defaultSorted={ defaultSorted }
-          // rowStyle={{ backgroundColor: 'white', padding: '50px 50px', margin: '0 100px' }}
-          rowClasses="custom-row-class"
-          headerClasses="custom-header-class"
-          bordered={ false }
-        />
+        bootstrap4
+        keyField="id"
+        data={applicants}
+        columns={columns}
+        pagination={paginationFactory(options)}
+        // hover
+        defaultSorted={ defaultSorted }
+        // rowStyle={{ backgroundColor: 'white', padding: '50px 50px', margin: '0 100px' }}
+        rowClasses="custom-row-class"
+        headerClasses="custom-header-class"
+        // tableClass="custom-table-class"
+        bordered={ false }
+      />
     </div>
   );
 }

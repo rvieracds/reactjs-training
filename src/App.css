@@ -28,6 +28,9 @@
   color: #61dafb;
 }
 
+
+
+
 .custom-header-class {
   /* width: 1326px; */
   height: 68px;
@@ -82,26 +85,18 @@
   height: 68px;
   border-radius: 8px;
   /* border-spacing:150px 20px; */
-  margin-bottom: 4px;
-  margin-top: 10px;
+  /* margin-bottom: 4px;
+  margin-top: 10px; */
   border: solid 1px #e4e4e4;
-  background-color: #6ce000;
+  /* background-color: #6ce000; */
 
-  border-top-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  /* border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px; */
 }
 
-.rows-per-page {
-  width: 103px;
-  height: 20px;
-  font-family: ObjektivMk2;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #000d20;
+.table {
+  border-collapse: separate; 
+  border-spacing:0 4px; 
 }
 
 @keyframes App-logo-spin {
