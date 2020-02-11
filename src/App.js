@@ -1,33 +1,70 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+// import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 // import logo from './logo.svg';
 import './App.css';
 
+const renderStatus = (status) => {
+  let cmp = null;
+
+  switch(status) {
+    case 'Approved': {
+      cmp = <div className="status-reactangle-class" style={{ background: 'rgba(0,161,158,0.1)' }}>{ status }</div>;
+      break; 
+    }
+    case 'Review': {
+      cmp = <div className="status-reactangle-class" style={{ background: 'rgba(92,8,255,0.1)' }}>{ status }</div>;
+      break; 
+    }
+    case 'Terms': {
+      cmp = <div className="status-reactangle-class" style={{ background: 'rgba(34,0,14,0.1)' }}>{ status }</div>;
+      break; 
+    }
+    case 'Disapproved': {
+      cmp = <div className="status-reactangle-class" style={{ background: 'rgba(239,36,0,0.1)' }}>{ status }</div>;
+      break; 
+    }
+    default: {
+      cmp = <div className="status-reactangle-class">-</div>;
+      break; 
+    }
+  }
+  return cmp;
+}
+
 const applicants = [
-  { id: 1, name: 'PEPE', score: 650, progress: 5, assigned: 'LOLO', status: 'Approved', date: 132345952 },
-  { id: 2, name: 'PEPE', score: 550, progress: 5, assigned: 'LOLO', status: 'Review', date: 132345952 },
-  { id: 3, name: 'PEPE', score: 451, progress: 5, assigned: 'LOLO', status: 'Disapproved', date: 132345952 },
-  { id: 4, name: 'PEPE', score: 412, progress: 5, assigned: 'LOLO', status: 'Review', date: 132345952 },
-  { id: 5, name: 'PEPE', score: 650, progress: 5, assigned: 'LOLO', status: 'Approved', date: 132345952 },
-  { id: 6, name: 'PEPE', score: 940, progress: 5, assigned: 'LOLO', status: 'Terms', date: 132345952 },
-  { id: 7, name: 'PEPE', score: 700, progress: 5, assigned: 'LOLO', status: 'Approved', date: 132345952 },
-  { id: 8, name: 'PEPE', score: 630, progress: 5, assigned: 'LOLO', status: 'Disapproved', date: 132345952 },
-  { id: 9, name: 'PEPE', score: 500, progress: 5, assigned: 'LOLO', status: 'Approved', date: 132345952 },
-  { id: 10, name: 'PEPE', score: 730, progress: 5, assigned: 'LOLO', status: 'Terms', date: 132345952 },
-  { id: 11, name: 'PEPE', score: 650, progress: 5, assigned: 'LOLO', status: 'Review', date: 132345952 },
-  { id: 12, name: 'PEPE', score: 895, progress: 5, assigned: 'LOLO', status: 'Approved', date: 132345952 },
+  { id: 1, name: 'Arbol Mendez', score: 650, progress: 3, assigned: 'Lolo', status: 'Approved', date: 2 },
+  { id: 2, name: 'Banana Dulce', score: 550, progress: 2, assigned: 'Pepe', status: 'Review', date: 3 },
+  { id: 3, name: 'Teclado Lopez', score: 451, progress: 5, assigned: 'Abcde', status: 'Disapproved', date: 5 },
+  { id: 4, name: 'Reloj Fijo', score: 412, progress: 2, assigned: 'Lolo', status: 'Review', date: 5 },
+  { id: 5, name: 'Celular Golpeado', score: 650, progress: 5, assigned: 'Koko', status: 'Approved', date: 2 },
+  { id: 6, name: 'Botella Dura', score: 940, progress: 1, assigned: 'Pepe', status: 'Terms', date: 4 },
+  { id: 7, name: 'Dia Soleado', score: 700, progress: 5, assigned: 'Lolo', status: 'Approved', date: 2 },
+  { id: 8, name: 'Monitor Plano', score: 630, progress: 8, assigned: 'Pepe', status: 'Disapproved', date: 1 },
+  { id: 9, name: 'Mate Amargo', score: 500, progress: 4, assigned: 'Abcde', status: 'Approved', date: 2 },
+  { id: 10, name: 'Luana Marquez', score: 730, progress: 5, assigned: 'Koko', status: 'Terms', date: 1 },
+  { id: 11, name: 'Yerba Mate', score: 650, progress: 7, assigned: 'Pepe', status: 'Review', date: 2 },
+  { id: 12, name: 'Jackita La Zorra', score: 895, progress: 10, assigned: 'Abcde', status: 'Approved', date: 6 },
 ];
 
 const nameCell = (cell, row, rowIndex, formatExtraData) => {
-  // const { deleteMe } = props;
-  // const rowId = row.id;
   return (
-    // <Button icon labelPosition='left' onClick={() => deleteMe(rowIndex, rowId)}><Icon name='remove' /> Remove </Button> );
     <div>
       <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=48" style={{ marginRight: 12 }} className="img-pic" />
+      { cell }
+    </div>
+  )
+}
+
+const assignedCell = (cell, row, rowIndex, formatExtraData) => {
+  return (
+    <div>
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" style={{ marginRight: 12 }} className="img-pic-small" />
       { cell }
     </div>
   )
@@ -36,12 +73,25 @@ const nameCell = (cell, row, rowIndex, formatExtraData) => {
 const progressCell = (cell, row, rowIndex, formatExtraData) => {
   // const { deleteMe } = props;
   // const rowId = row.id;
+  const progress = cell * 10;
   return (
     // <Button icon labelPosition='left' onClick={() => deleteMe(rowIndex, rowId)}><Icon name='remove' /> Remove </Button> );
     <div>
-      <ProgressBar now={60} variant="custom-progress-bar" />
+      <ProgressBar now={progress} variant="custom-progress-bar" />
     </div>
   )
+}
+
+const dateCell = (cell, row, rowIndex, formatExtraData) => {
+  return (
+    <div>
+      {(cell === 1) ? 'a day ago' : `${cell} days ago`}
+    </div>
+  )
+}
+
+const statusCell = (cell, row, rowIndex, formatExtraData) => {
+  return renderStatus(cell);
 }
 
 const columns = [{
@@ -68,15 +118,18 @@ const columns = [{
 }, {
   dataField: 'assigned',
   text: 'Assigned',
-  headerClasses: 'header-title-class'
+  headerClasses: 'header-title-class',
+  formatter: assignedCell,
 }, {
   dataField: 'status',
   text: 'Status',
-  headerClasses: 'header-title-class'
+  headerClasses: 'header-title-class',
+  formatter: statusCell,
 }, {
   dataField: 'date',
   text: 'Date',
   headerClasses: 'header-title-class',
+  formatter: dateCell,
   sort: true,
 }];
 
@@ -145,7 +198,18 @@ const defaultSorted = [{
   order: 'desc'
 }];
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}));
+
 function App() {
+  const classes = useStyles();
+
   return (
     <div style={{ margin: '27px 52px' }}>
       <BootstrapTable
@@ -162,6 +226,26 @@ function App() {
         // tableClass="custom-table-class"
         bordered={ false }
       />
+
+      <form className={classes.root} noValidate autoComplete="off">
+        
+        {/* <TextField id="name-input" label="Name" variant="outlined" /> */}
+
+
+        <TextField id="name-input" label="Name" variant="outlined" background="blue" />
+
+        
+        <TextField
+          error
+          id="outlined-error-helper-text"
+          label="Error"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
+          variant="outlined"
+        />
+
+
+      </form>
     </div>
   );
 }
