@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="41" height="48" viewBox="0 0 41 48">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#22000E" fill-opacity=".8" fill-rule="nonzero" d="M16.8 4.8H4.79l.01 38.4h28.795s.005-13.988.005-21.6H19.2a2.4 2.4 0 0 1-2.4-2.4V4.8zm4.8 12h12l-12-12v12zM4.79 0h17.537c.662 0 1.581.383 2.041.843l13.19 13.194c.465.466.842 1.39.842 2.041v27.124A4.799 4.799 0 0 1 33.595 48H4.805A4.807 4.807 0 0 1 0 43.2V4.8C0 2.149 2.15 0 4.79 0zM7.2 36a2.4 2.4 0 0 1 2.389-2.4h19.222A2.389 2.389 0 0 1 31.2 36a2.4 2.4 0 0 1-2.389 2.4H9.589A2.389 2.389 0 0 1 7.2 36zm0-7.2c0-1.325 1.082-2.4 2.41-2.4h9.58a2.4 2.4 0 1 1 0 4.8H9.61a2.4 2.4 0 0 1-2.41-2.4z"/>
+        <rect width="41" height="14" y="25" fill="#FF086E" rx="2"/>
+        <text fill="#FFF" font-family="ObjektivMk2-Medium, Objektiv Mk2" font-size="10" font-weight="400">
+            <tspan x="10" y="36">PDF</tspan>
+        </text>
+    </g>
+</svg>

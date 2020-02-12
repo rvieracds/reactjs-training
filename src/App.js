@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 // import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
@@ -6,7 +7,20 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
+
+import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+
 // import logo from './logo.svg';
+import documentIcon from './pdf-icon.svg';
+
 import './App.css';
 
 const renderStatus = (status) => {
@@ -200,19 +214,170 @@ const defaultSorted = [{
 
 const useStyles = makeStyles(theme => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: 200,
+    width: 360,
+    height: 56,
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: 'rgba(34, 0, 14, 0.2)',
+    "& label": {
+      fontSize: 16,
+      color: 'rgba(34, 0, 14, 0.54)',
+    },
+    "& label.Mui-focused": {
+      color: "#00a19e"
+    },
+    "& input:valid + fieldset": {
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: 'rgba(34, 0, 14, 0.2)',
+    },
+    "& input:valid:focus + fieldset": {
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: "#00a19e",
+      background: 'rgba(0, 161, 158, 0.05)',
+    },
+
+    // ".MuiOutlinedInput-colorSecondary.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    //   borderColor: 'orange',
+    // },
+    // ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    //   borderColor: "#3f51b5",
+    //   borderWidth: 10,
+    // }
+  },
+  error: {
+    width: 360,
+    height: 56,
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "#ef2400",
+    background: 'white',
+    "& input:valid:focus + fieldset": {
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: "#ef2400",
+      background: 'white',
+    }
+  },
+  passwordInput: {
+    width: 360,
+    height: 56,
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: 'rgba(34, 0, 14, 0.2)',
+    "& label.Mui-focused": {
+      color: "#00a19e",
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: "#00a19e",
+      background: 'rgba(0, 161, 158, 0.05)',
+    },
+    "& label.Mui-focused": {
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: "#00a19e",
+      background: 'rgba(0, 161, 158, 0.05)',
+    },
+  },
+  input: {
+    display: 'none',
+  },
+  filledButton: {
+    backgroundColor: '#ff086e',
+    boxShadow: 'none',
+
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+
+    '&:hover': {
+      backgroundColor: '#ff086e',
+      boxShadow: 'none',
+    },
+  },
+  
+  unfilledButton: {
+    backgroundColor: '#fff',
+    boxShadow: 'none',
+
+    fontSize: 16,
+    color: '#ff086e',
+
+    '&:hover': {
+      backgroundColor: '#fff',
+      boxShadow: 'none',
     },
   },
 }));
 
+
+
+
+
+
+
+
+
+
+// const CustomTextField = withStyles({
+//   root: {
+//     "& input:valid + fieldset": {
+//       borderColor: "green",
+//       borderWidth: 2
+//     },
+//     "& input:invalid + fieldset": {
+//       borderColor: "red",
+//       borderWidth: 2
+//     },
+//     "& input:valid:focus + fieldset": {
+//       background: "red",
+//       padding: "4px !important" // override inline-style
+//     }
+//   }
+// })(TextField);
+
+// const [values, setValues] = React.useState({
+//   amount: '',
+//   password: '',
+//   weight: '',
+//   weightRange: '',
+//   showPassword: false,
+// });
+
+const handleChange = prop => event => {
+  // setValues({ ...values, [prop]: event.target.value });
+};
+
+const handleClickShowPassword = () => {
+  // setValues({ ...values, showPassword: !values.showPassword });
+};
+
+const handleMouseDownPassword = event => {
+  event.preventDefault();
+};
+
+
 function App() {
   const classes = useStyles();
 
+
+  const values = {
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+    // showPassword: true,
+  }
+
   return (
     <div style={{ margin: '27px 52px' }}>
-      <BootstrapTable
+
+
+
+      {/* DASHBOARD SCREEN AND INPUTS */}
+      {/* <BootstrapTable
         bootstrap4
         keyField="id"
         data={applicants}
@@ -223,29 +388,115 @@ function App() {
         // rowStyle={{ backgroundColor: 'white', padding: '50px 50px', margin: '0 100px' }}
         rowClasses="custom-row-class"
         headerClasses="custom-header-class"
-        // tableClass="custom-table-class"
         bordered={ false }
       />
 
-      <form className={classes.root} noValidate autoComplete="off">
-        
-        {/* <TextField id="name-input" label="Name" variant="outlined" /> */}
+      <form noValidate autoComplete="off" >
 
-
-        <TextField id="name-input" label="Name" variant="outlined" background="blue" />
-
-        
         <TextField
-          error
-          id="outlined-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
+          id="name-input"
           variant="outlined"
+          label="Name"
+          className={classes.root}
+          disabled={false}
+          error={false}
+          helperText="Enter your full name"
         />
 
+        <div style={{ margin: 50 }}></div>
 
+        <TextField
+          id="error-input"
+          variant="outlined"
+          label="Error"
+          className={classes.error}
+          disabled={false}
+          error={true}
+          helperText="This field is required"
+        />
+
+        <div style={{ margin: 50 }}></div>
+
+        <TextField
+          id="disable-input"
+          variant="outlined"
+          label="Disabled"
+          className={classes.root}
+          disabled={true}
+          error={false}
+          helperText="Enter your full name"
+        />
       </form>
+
+      <div style={{ margin: 50 }}></div>
+
+      <FormControl className={classes.root} variant="outlined" >
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={'lalala'}
+            // value={values.password}
+            className={classes.root}
+            onChange={handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl> */}
+
+
+
+        {/* <div className="documents-rectangle-class"> */}
+        <div  className="documents-rectangle-class" style={{ justifyContent: 'space-between' }}>
+          <div style={{ flex: 0, backgroundColor: 'pink', marginRight: 24 }} >
+            <img src={documentIcon} className="documents-rectangle-icon-class"/>
+          </div>
+
+          <div style={{ flex: 1, backgroundColor: 'yellow', flexDirection: 'column' }} >
+            <div className="documents-title-left-side-text" >
+              Mobile bill
+            </div>
+            <div className="documents-subtitle-left-side-text" >
+              Bill for December 2019
+            </div>
+          </div>
+
+
+
+          <div style={{ flex: 1, flexDirection: 'row', backgroundColor: 'pink', justifyContent: 'center', alignItems: 'center' }}>
+
+            <Button className={classes.unfilledButton} >Don’t have it</Button>
+            {/* <Button className={classes.unfilledButton}>Don’t have it</Button> */}
+
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="contained-button-file"
+              multiple
+              type="file"
+            />
+
+            <label htmlFor="contained-button-file">
+              <Button variant="contained" component="span" className={classes.filledButton} >
+                Upload
+              </Button>
+            </label>
+          </div>
+
+        </div>
+
+
     </div>
   );
 }
