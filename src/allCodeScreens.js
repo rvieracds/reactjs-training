@@ -20,13 +20,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ReactCodeInput from 'react-code-input'
 
 
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-
-
-
 // import logo from './logo.svg';
 import documentIcon from './pdf-icon.svg';
 
@@ -74,23 +67,6 @@ const applicants = [
   { id: 11, name: 'Yerba Mate', score: 650, progress: 7, assigned: 'Pepe', status: 'Review', date: 2 },
   { id: 12, name: 'Jackita La Zorra', score: 895, progress: 10, assigned: 'Abcde', status: 'Approved', date: 6 },
 ];
-
-
-const utilityBillsList = [
-  { id: 1, name: 'Mobile bill', status: '', date: 'December 2019' },
-  { id: 2, name: 'Television bill', status: '', date: 'December 2019' },
-  { id: 3, name: 'Electricity bill', status: '', date: 'December 2019' },
-  { id: 4, name: 'Health bill', status: '', date: 'December 2019' },
-  { id: 5, name: 'Rent bill', status: '', date: 'December 2019' },
-  { id: 6, name: 'Car loan bill', status: '', date: 'December 2019' },
-];
-
-const statementsList = [
-  { id: 1, name: 'Mobile money statement', status: '', date: 'December 2019' },
-  { id: 2, name: 'Nigeria Bank statement', status: '', date: 'December 2019' },
-];
-
-
 
 const nameCell = (cell, row, rowIndex, formatExtraData) => {
   return (
@@ -321,13 +297,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#ff086e',
       boxShadow: 'none',
     },
-
-
-
-    '@media screen and (max-width: 320px)': {
-      fontSize: '4vw',
-    },
-
   },
   
   unfilledButton: {
@@ -342,12 +311,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#fff',
       boxShadow: 'none',
     },
-
-
-    '@media screen and (max-width: 320px)': {
-      fontSize: '4vw',
-    },
-
   },
 
 
@@ -356,43 +319,7 @@ const useStyles = makeStyles(theme => ({
       "-webkit-appearance": "none",
       margin: 0
     }
-  },
-
-
-
-  submitDocsButton: {
-    // backgroundColor: '#ff086e',
-    boxShadow: 'none',
-
-    // fontSize: 16,
-    // color: '#fff',
-    // fontWeight: 'bold',
-
-
-    fontFamily: 'ObjektivMk2',
-    fontSize: 16,
-    fontWeight: 500,
-    textAlign: 'center',
-    color: 'rgb(34,0,14,0.32)',
-    width: 302,
-    height: 43,
-    borderRadius: 8,
-    backgroundColor: '#d3cccf',
-
-    '@media screen and (max-width: 690px)': {
-      flex: 1,
-      marginTop: 5,
-    },
-    '@media screen and (max-width: 320px)': {
-      width: 'auto',
-      fontSize: '4vw',
-    },
-
-    '&:hover': {
-      backgroundColor: '#d3cccf',
-      boxShadow: 'none',
-    },
-  },
+  }
 
 
 }));
@@ -455,57 +382,6 @@ const handleMouseDownPassword = event => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-const renderDocumentItemContainer = (classes) => (
-  <div className="documents-rectangle-class" style={{ justifyContent: 'space-between', marginBottom: 16 }}>
-
-    <div className="row-section-one">
-      {/* <div style={{ marginRight: 24 }} > */}
-      <div style={{ marginRight: 0 }} >
-        <img src={documentIcon} className="documents-rectangle-icon-class"/>
-      </div>
-
-      <div style={{ flex: 1, flexDirection: 'column' }} >
-        <div className="documents-title-left-side-text" >
-          Mobile bill
-        </div>
-        <div className="documents-subtitle-left-side-text" >
-          Bill for December 2019
-        </div>
-      </div>
-    </div>
-
-    <div className="row-section-two" >
-        <Button className={classes.unfilledButton}>Don’t have it</Button>
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="contained-button-file"
-          multiple
-          type="file"
-        />
-        <label htmlFor="contained-button-file" style={{ marginBottom: 0 }}>
-          <Button variant="contained" component="span" className={classes.filledButton} >
-            Upload
-          </Button>
-        </label>
-    </div>
-
-  </div>
-);
-
-
-
 function App() {
   const classes = useStyles();
 
@@ -520,8 +396,7 @@ function App() {
   }
 
   return (
-    // <div style={{ margin: '27px 52px' }}>
-    <div style={{}}>
+    <div style={{ margin: '27px 52px' }}>
 
 
 
@@ -606,73 +481,42 @@ function App() {
 
 
 
-
-
-
-
-        
-        <React.Fragment>
-          <CssBaseline />
-          <Container maxWidth="md" style={{ marginTop: 24, marginBottom: 87 }}>
-
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-              <p className="upload-docs-title">Upload documents and increase your score</p>
-              <p className="upload-docs-subtitle">Utility Bills</p>
-            </div>
-            {statementsList.map(item => renderDocumentItemContainer(classes))}
-
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-              <p className="upload-docs-subtitle">Statements</p>
-            </div>
-            {statementsList.map(item => renderDocumentItemContainer(classes))}
-
-
-            <div className="section-three-class">
-              <p className="documents-uploaded-text" style={{ margin: 0, marginLeft: "auto" }} >
-                0 of 5 documents uploaded
-              </p>  
-              <Button variant="contained" component="span" className={classes.submitDocsButton}>
-                Submit documents
-              </Button>
-            </div>
-
-          </Container>
-        </React.Fragment>
-
-
-        {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> */}
-          {/* <div style={{ display: 'flex', width: 944, flexDirection: 'column', alignItems: 'left' }}>
-            <p className="upload-docs-title">Upload documents and increase your score</p>
-            <p className="upload-docs-subtitles">Utility Bills</p>
+        {/* <div className="documents-rectangle-class"> */}
+        <div  className="documents-rectangle-class" style={{ justifyContent: 'space-between' }}>
+          <div style={{ marginRight: 24 }} >
+            <img src={documentIcon} className="documents-rectangle-icon-class"/>
           </div>
+
+          <div style={{ flex: 1, flexDirection: 'column' }} >
+            <div className="documents-title-left-side-text" >
+              Mobile bill
+            </div>
+            <div className="documents-subtitle-left-side-text" >
+              Bill for December 2019
+            </div>
+          </div>
+
+
+
           <div>
-            {utilityBillsList.map(item => renderDocumentItemContainer(classes))}
-          </div> */}
-          
-          {/* <div style={{ display: 'flex', width: 944, flexDirection: 'column', alignItems: 'left' }}>
-            <p className="upload-docs-subtitles">Statements</p>
-          </div> */}
-          {/* <div>
-            {statementsList.map(item => renderDocumentItemContainer(classes))}
-          </div> */}
-{/* 
-          <div style={{ display: 'flex', marginTop: 62, alignItems: 'center', width: 944 }}>
-            <p className="" style={{ margin: 0, marginLeft: "auto", marginRight: 24 }} >
-              0 of 5 documents uploaded
-            </p>  
-            <Button variant="contained" component="span" className={classes.submitDocsButton}>
-              Submit documents
-            </Button>
-          </div> */}
+            <Button className={classes.unfilledButton}>Don’t have it</Button>
 
-        {/* </div> */}
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="contained-button-file"
+              multiple
+              type="file"
+            />
 
+            <label htmlFor="contained-button-file" style={{ marginBottom: 0 }}>
+              <Button variant="contained" component="span" className={classes.filledButton} >
+                Upload
+              </Button>
+            </label>
+          </div>
 
-
-
-
-
-
+        </div>
 
 
 
